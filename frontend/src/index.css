@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --turf-dark: #1b4332;
+  --turf-mid: #204a38;
+  --ink: #0d1b14;
+  --ink-soft: #12261c;
+  --chalk: #f1faee;
+  --team-a: #3a86ff;
+  --team-a-dark: #1b4965;
+  --team-b: #e63946;
+  --team-b-dark: #7a1f27;
+  --amber: #ffb703;
+
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--ink);
+  color: var(--chalk);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink);
+}
+
+/* ---------- Cancha ---------- */
+
+.pitch-canvas {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: grab;
+}
+
+.pitch-canvas:active {
+  cursor: grabbing;
+}
+
+/* ---------- Marcador ---------- */
+
+.scoreboard {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background: var(--ink-soft);
+  border-bottom: 2px solid rgba(241, 250, 238, 0.12);
+}
+
+.scoreboard-team {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.scoreboard-team--right {
+  flex-direction: row-reverse;
+}
+
+.scoreboard-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.scoreboard-name {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30vw;
+}
+
+.scoreboard-score {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  padding: 2px 18px;
+  border: 1px solid rgba(241, 250, 238, 0.25);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.scoreboard-sep {
+  color: rgba(241, 250, 238, 0.5);
+}
+
+.scoreboard-turn {
+  position: absolute;
+  right: 20px;
+  top: 100%;
+  transform: translateY(6px);
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.scoreboard-turn--A {
+  border-left: 3px solid var(--team-a);
+}
+
+.scoreboard-turn--B {
+  border-left: 3px solid var(--team-b);
+}
+
+/* ---------- Instrucciones ---------- */
+
+.instructions {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 5;
+  max-width: min(320px, 70vw);
+}
+
+.instructions-toggle {
+  background: var(--ink-soft);
+  color: var(--chalk);
+  border: 1px solid rgba(241, 250, 238, 0.25);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.instructions-toggle:hover {
+  border-color: var(--amber);
+}
+
+.instructions-body {
+  margin-top: 8px;
+  background: var(--ink-soft);
+  border: 1px solid rgba(241, 250, 238, 0.18);
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.instructions-body ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.instructions-body li + li {
+  margin-top: 6px;
+}
+
+/* ---------- Registro de eventos ---------- */
+
+.event-log {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 5;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: min(280px, 60vw);
+}
+
+.event-log-item {
+  font-size: 12.5px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: rgba(13, 27, 20, 0.85);
+  border-left: 3px solid rgba(241, 250, 238, 0.3);
+}
+
+.event-log-item--goal {
+  border-left-color: var(--amber);
+  color: var(--amber);
+}
+
+.event-log-item--invalid {
+  border-left-color: var(--team-b);
+  color: #ffb3b8;
+}
+
+.event-log-item--turn {
+  border-left-color: var(--chalk);
+}
+
+/* ---------- Overlays compartidos ---------- */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 30%, rgba(32, 74, 56, 0.9), var(--ink) 75%);
+  padding: 24px;
+}
+
+.start-card,
+.result-card {
+  width: min(420px, 100%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.start-eyebrow,
+.result-eyebrow {
+  font-size: 13px;
+  color: rgba(241, 250, 238, 0.65);
+  margin: 0;
+}
+
+.start-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 12vw, 76px);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  margin: 0;
+  transform: rotate(-2deg);
+}
+
+.start-copy {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(241, 250, 238, 0.85);
+  max-width: 34ch;
+  margin: 0;
+}
+
+.start-form {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.start-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: rgba(241, 250, 238, 0.7);
+  flex: 1 1 160px;
+  text-align: left;
+}
+
+.start-field input {
+  background: var(--ink-soft);
+  border: 1px solid rgba(241, 250, 238, 0.25);
+  border-radius: 4px;
+  padding: 10px 12px;
+  color: var(--chalk);
+  font-size: 15px;
+}
+
+.start-field input:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}
+
+.start-button {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.03em;
+  background: var(--amber);
+  color: var(--ink);
+  border: none;
+  border-radius: 4px;
+  padding: 12px 32px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  filter: brightness(1.08);
+}
+
+.start-button:focus-visible {
+  outline: 2px solid var(--chalk);
+  outline-offset: 2px;
+}
+
+.result-score {
+  font-family: var(--font-display);
+  font-size: 64px;
+  display: flex;
+  gap: 16px;
+}
+
+.result-sep {
+  color: rgba(241, 250, 238, 0.5);
+}
+
+.result-winner {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .scoreboard-name {
+    font-size: 12px;
+    max-width: 26vw;
+  }
+  .scoreboard-score {
+    font-size: 20px;
+    padding: 2px 12px;
+  }
+  .instructions,
+  .event-log {
+    max-width: 85vw;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
