@@ -12,6 +12,12 @@ anteriores, si existieron.
 
 ## Revisión personal pendiente
 
+Actualización: el estudiante creó el servicio de Render y compartió su URL.
+El asistente verificó las cuatro pruebas en Chrome contra producción.
+Después el estudiante solicitó el workflow de despliegue: se incorporaron
+`deploy.yml`, el script de despliegue, `/api/health` y la documentación de
+publicación. El secreto del hook se configura directamente en GitHub.
+
 - Explicar el recorrido de un tiro entre canvas, `GameClient` y Express.
 - Distinguir estado mutable de física y estado visible de React.
 - Explicar el bloqueo de resolución mientras se espera la respuesta HTTP.

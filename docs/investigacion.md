@@ -56,18 +56,18 @@ No se afirma haber probado todas las colisiones, goles o resoluciones de pantall
 `lint.yml` valida frontend y backend. `e2e.yml` instala dependencias,
 compila ambos paquetes, instala Chromium en Linux y ejecuta las E2E
 headless. Guarda el reporte durante siete días; trazas, capturas y videos
-se conservan en caso de fallo. Ambos workflows responden a push a `main`,
-pull request y ejecución manual, con permisos de lectura y límite de tiempo.
+se conservan en caso de fallo. Ambos workflows responden a pull request,
+ejecución manual y llamadas desde `deploy.yml`, con permisos de lectura y límite de tiempo.
 
-No se creó un workflow que simule un deployment. Esa tercera responsabilidad
-del examen permanece pendiente junto con la publicación solicitada para después.
+`deploy.yml` se activa con push a `main`, llama a ambos workflows y después
+despliega en Render y prueba producción. Ver [publicación](publicacion.md).
 
-## Ejecución futura contra una URL pública
+## Ejecución contra la URL pública
 
-En PowerShell, reemplazar el ejemplo por la URL real cuando exista:
+En PowerShell:
 
 ```powershell
-$env:E2E_BASE_URL = 'https://URL-REAL-DEL-JUEGO'
+$env:E2E_BASE_URL = 'https://examen-final-react.onrender.com'
 npm run test:e2e:chrome
 Remove-Item Env:E2E_BASE_URL
 ```
@@ -75,19 +75,17 @@ Remove-Item Env:E2E_BASE_URL
 En bash:
 
 ```bash
-E2E_BASE_URL=https://URL-REAL-DEL-JUEGO npm run test:e2e:chrome
+E2E_BASE_URL=https://examen-final-react.onrender.com npm run test:e2e:chrome
 ```
 
 La variable evita iniciar Express local. Las pruebas crean partidas reales
 en ese servidor, con nombres de prueba. No hay endpoint para borrarlas;
 permanecen en memoria hasta reiniciar el servidor.
 
-## Publicación aplazada
+## Publicación
 
-No se eligió ni configuró proveedor. Express ya utiliza `PORT`, con 4000
-por defecto, y un único origen. Faltan investigación del servicio, configuración,
-workflow de despliegue, URL y pruebas en producción. Docker es opcional y
-no se incorporó.
+El estudiante publicó el servicio en Render y solicitó el workflow de
+despliegue. La configuración está en `publicacion.md`. Docker no se incorporó.
 
 ## Verificaciones de esta etapa
 
@@ -102,6 +100,6 @@ Ejecuciones realizadas por el asistente en Windows con Node.js 22.20.0:
 
 Las pruebas locales usan el build servido por Express en 4000. Las
 ejecuciones remotas se consultan en la pestaña Actions del repositorio;
-su resultado debe verificarse después de subir los workflows. No se han
-ejecutado pruebas contra una aplicación publicada, porque la publicación
-está aplazada. Estas verificaciones no sustituyen el ensayo del estudiante.
+los workflows iniciales de lint y E2E pasaron en GitHub. Las cuatro pruebas
+también pasaron contra Render en Chrome visible (17,8 segundos).
+Estas verificaciones no sustituyen el ensayo del estudiante.

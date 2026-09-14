@@ -11,11 +11,13 @@ que todavía no haya confirmado.
 - [Decisiones, evolución y riesgos](decisiones.md)
 - [Investigación y ejecución de pruebas](investigacion.md)
 - [Registro del uso de IA](uso-ia.md)
+- [Publicación y workflow de Render](publicacion.md)
 
 ## Pendientes para la entrega
 
-La publicación, su workflow y el README final se aplazaron por solicitud
-del estudiante. Esta etapa no completa esos requisitos del examen.
+El estudiante publicó la aplicación en Render y luego solicitó su workflow.
+La configuración y conexión del despliegue se describen en `publicacion.md`.
+El README final sigue pendiente por solicitud del estudiante.
 También quedan pendientes el video, el ensayo de defensa, la comprobación
 de originalidad respecto de clase y la revisión personal del código.
 

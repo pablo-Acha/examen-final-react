@@ -1,5 +1,9 @@
 # API HTTP y JSON
 
+`GET /api/health` devuelve JSON con `status: "ok"` y `commit` (SHA de Render
+o `null` en local). GitHub Actions lo usa para comprobar la revisión publicada.
+No recibe cuerpo ni devuelve secretos; envía `Cache-Control: no-store`.
+
 Base: `/api/matches`, en el mismo origen que el frontend. Para enviar un
 cuerpo se usa `Content-Type: application/json`. No hay autenticación:
 el identificador de partida permite consultar y modificar esa partida.

@@ -1,7 +1,6 @@
 name: Linters de frontend y backend
 on:
-  push:
-    branches: [main]
+  workflow_call:
   pull_request:
   workflow_dispatch:
 permissions:

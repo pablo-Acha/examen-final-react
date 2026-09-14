@@ -7,6 +7,12 @@ const PORT = Number(process.env.PORT) || 4000;
 
 app.use(express.json());
 
+// Permite comprobar que Render ya sirve el commit validado por GitHub Actions.
+app.get('/api/health', (_req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.json({ status: 'ok', commit: process.env.RENDER_GIT_COMMIT || null });
+});
+
 app.use('/api/matches', matchesRouter);
 
 // El frontend compilado (npm run build en /frontend) vive en frontend/dist.
