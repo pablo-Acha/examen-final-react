@@ -17,7 +17,7 @@ que todavía no haya confirmado.
 
 El estudiante publicó la aplicación en Render y luego solicitó su workflow.
 La configuración y conexión del despliegue se describen en `publicacion.md`.
-El README final sigue pendiente por solicitud del estudiante.
+El [README principal](../README.md) reúne instalación, API, pruebas y despliegue.
 También quedan pendientes el video, el ensayo de defensa, la comprobación
 de originalidad respecto de clase y la revisión personal del código.
 

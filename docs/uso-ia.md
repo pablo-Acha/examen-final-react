@@ -9,6 +9,7 @@ anteriores, si existieron.
 | Subir mediante GitHub CLI como «examen final react» | Preparar Git y repositorio `examen-final-react` | Verificar enlace y acceso al finalizar. |
 | Crear E2E, Actions y documentación, sin publicar ni hacer README final | Playwright, workflows, documentos y corrección del envío duplicado | Archivos de esta etapa. |
 | Motivo de elección confirmado | El estudiante indicó que eligió el juego por cumplir características del examen | `introduccion.md`. |
+| Completar el README final | Redacción basada en código, comandos y ejecuciones verificadas, con enlaces a aplicación y Actions | README principal y actualización de referencias pendientes. |
 
 ## Revisión personal pendiente
 

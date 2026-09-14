@@ -10,7 +10,8 @@
 Actualización: posteriormente el estudiante creó el servicio de Render,
 compartió su URL y solicitó el workflow de despliegue. Confirmó que guardó
 `RENDER_DEPLOY_HOOK_URL` en GitHub y desactivó Auto-Deploy en Render.
-El README final continúa pendiente. Ver `publicacion.md` para el flujo actual.
+Posteriormente solicitó completar el README final, que reúne el uso y la
+configuración comprobables. Ver `publicacion.md` para el flujo actual.
 
 ## Soluciones implementadas por el asistente en esta etapa
 

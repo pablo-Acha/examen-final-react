@@ -83,4 +83,5 @@ defensa en diez minutos.
 - [Plan gratuito](https://render.com/docs/free): suspensión y límites.
 
 El estudiante debe revisar estas fuentes y agregar sus observaciones reales
-sobre la configuración y el ensayo; el README final sigue pendiente por su solicitud.
+sobre la configuración y el ensayo. El README principal contiene los comandos
+de instalación, pruebas y despliegue para reproducir el proyecto.

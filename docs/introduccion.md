@@ -31,7 +31,7 @@ reportado por el navegador.
 - Física propia, sin motor externo.
 - Partidas guardadas en memoria del servidor; se pierden al reiniciar.
 - Sin cuentas de usuario ni base de datos.
-- Aplicación publicada por el estudiante en Render; README final aún pendiente.
+- Aplicación publicada por el estudiante en Render, con README de instalación, pruebas y despliegue.
 
 Antes de entregar, el estudiante debe explicar qué diferencia su propuesta
 de los ejercicios de clase y revisar esta documentación con el código.
