@@ -6,7 +6,7 @@ export default function InstructionsPanel() {
   return (
     <div className={`instructions ${open ? 'instructions--open' : ''}`}>
       <button className="instructions-toggle" onClick={() => setOpen((v) => !v)}>
-        {open ? 'Cerrar instrucciones' : 'Cómo se juega'}
+        {open ? 'Cerrar instrucciones' : 'Cómo se juega aaaaaa'}
       </button>
       {open && (
         <div className="instructions-body">
