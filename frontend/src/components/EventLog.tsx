@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import type { LogEntry } from '../game/types';
 
 interface Props {
@@ -5,14 +6,24 @@ interface Props {
 }
 
 export default function EventLog({ entries }: Props) {
-  if (entries.length === 0) return null;
+  const latestEntry = entries[0] ?? null;
+  const latestEntryId = latestEntry?.id;
+  const [expiredEntryId, setExpiredEntryId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (latestEntryId === undefined) return;
+
+    // Solo se reinicia el tiempo cuando llega un mensaje nuevo.
+    const timeoutId = window.setTimeout(() => setExpiredEntryId(latestEntryId), 4000);
+    return () => window.clearTimeout(timeoutId);
+  }, [latestEntryId]);
+
+  if (!latestEntry || expiredEntryId === latestEntry.id) return null;
   return (
     <ul className="event-log">
-      {entries.map((entry) => (
-        <li key={entry.id} className={`event-log-item event-log-item--${entry.tone}`}>
-          {entry.text}
-        </li>
-      ))}
+      <li className={`event-log-item event-log-item--${latestEntry.tone}`}>
+        {latestEntry.text}
+      </li>
     </ul>
   );
 }
